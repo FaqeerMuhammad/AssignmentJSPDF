@@ -1,0 +1,9 @@
+var my   Name; // space not allowed
+
+var #name ;  // variable name can contain only letters, numbers, dollar signs, and underscores.
+
+var let ;  // Reserved keyword not allowed
+
+var my-variable ; //Hyphens are not allowed in variable names
+
+var 5name ; // variable can’t start with a number.
