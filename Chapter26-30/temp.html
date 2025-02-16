@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weight Input Parser</title>
+    <style>
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Please enter your weight:</h2>
+    <input type="text" id="weightInput" placeholder="Enter your weight (e.g., 50, 50kgs, 50.2kgs)">
+    <button onclick="parseWeight()">Submit</button>
+
+    <div class="result" id="parsedWeight"></div>
+
+    <script>
+        function parseWeight() {
+            // Get the user input
+            const weightInput = document.getElementById('weightInput').value;
+
+            // Regular expression to match different weight formats
+            const regex = /^(\d+(\.\d+)?)\s*(kgs?|kilograms?)$/i;
+            
+            // Try to match the input
+            const match = weightInput.match(regex);
+
+            let parsedWeight;
+
+            if (match) {
+                // If a match is found, extract the numeric value
+                parsedWeight = match[1];
+            } else {
+                // If no unit is present, assume the input is just a number
+                parsedWeight = parseFloat(weightInput);
+                
+                // Check if it's a valid number
+                if (isNaN(parsedWeight)) {
+                    document.getElementById('parsedWeight').innerHTML = 'Invalid input. Please enter a valid weight.';
+                    return;
+                }
+            }
+
+            // Display the parsed weight
+            document.getElementById('parsedWeight').innerHTML = `Your weight is: ${parsedWeight} kg`;
+        }
+    </script>
+</body>
+</html>
